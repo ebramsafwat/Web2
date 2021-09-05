@@ -1,0 +1,249 @@
+<html>
+    <head>
+        <title>Web 2 Project</title>
+        <style>
+            body
+            {
+                background-image: url("bkground.png");
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+
+            }
+            h1{
+                font-style: italic;
+                text-align: center;
+                font-size: 100px;
+                color: white;
+                text-decoration-line: underline;
+              }
+              h2
+              {
+                font-style:oblique;
+                text-align: center;
+                font-size: 50px;
+                color:turquoise;
+              }
+            #num
+            {
+                margin-left: 37%;
+                width: 300px;
+                height: 37px;
+                transition: width .35s ease-in-out;
+            }
+            #char_btn
+            {
+                margin-left: 37%;
+            }
+            #result
+            {
+                margin-left: 40%;
+            }
+            
+            #btn
+            {
+                width: 100px;
+                height: 40px;
+                border-radius: 10px;
+                
+
+            }
+            #btn:hover
+            {
+                background-color: #313045; 
+                color: white;
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+        
+        </style>
+    </head>
+    <body>
+        <h1>Learning English Letters</h1>
+        <h2>Enter your Number</h2> 
+        <input type="text" id="num" width="25px" value="" >
+        
+        <input type="button" value="Your Character" id="btn" >
+        
+       
+            <div id="char_btn">
+
+            </div>
+
+        <div id="result" >
+            <img src="" id=img1>
+        </div>
+
+        <script>
+
+
+        var list=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+
+      
+        function random_item(items)
+            {
+            
+            return items[Math.floor(Math.random()*items.length)];
+                
+            }
+
+        var tx=document.getElementById("num");
+        var butn=document.getElementById("btn");
+        var div1=document.getElementById("result");
+        var div2=document.getElementById("char_btn");
+        var img=document.getElementById("img1");
+        var loadcounter=0;
+        var clickcounter=0;
+        var d=new Date();
+
+ /////////////////////The Event Of Show the random buttons of EveryCharacter///////////////////
+         var newElement;
+          var itsText;
+          
+  
+       butn.addEventListener("click",function(e){
+            div2.innerHTML='';
+            clickcounter++;
+            var  eventtype1="{Click ".concat(clickcounter," , Event ",clickcounter,
+            " Target is Generate a Random Buttons of Character , EventTime : ",d,"}");
+        
+            SaveDataToLocalStorage(eventtype1);
+          
+
+            for(var i=0;i<parseInt(tx.value);i++)
+           {
+            newElement=document.createElement("button");
+            itsText=document.createTextNode(random_item(list));
+               newElement.appendChild(itsText);
+               newElement.style.width="70px";
+               newElement.style.color="black";
+               newElement.style.height="50px";
+               newElement.style.borderRadius="12px";
+               newElement.style.backgroundColor="grey";
+               
+               div2.append(newElement);
+              
+               
+           }
+        });
+                    
+           
+        
+          
+        
+       
+     
+        
+///////////////////////Function  of Append the Events information /////////////////////////
+            var events = [];
+                function SaveDataToLocalStorage(data)
+                {       
+                    var receiveddata = JSON.stringify(data);
+                    events.push(receiveddata);
+                   
+
+                    localStorage.setItem('Event Click Information ', events);
+
+                }
+                var events2=[];
+                function SaveDataToLocalStorage2(data)
+                {       
+                    var receiveddata = JSON.stringify(data);
+                    events2.push(receiveddata);
+                   
+
+                    localStorage.setItem('Event Of Window ', events2);
+
+                }
+/////////////////////The Event Of Show Thw Images of EveryCharacter///////////////////
+        
+         div2.addEventListener("click", function(e)
+         {
+             
+             
+            clickcounter++;
+     var  eventtype2="{Click ".concat(clickcounter," , Button: ",e.target.textContent,
+     " , Event ",clickcounter," Target is Generate a Image of Character , EventTime : ",d,"}");
+        
+            
+            
+            SaveDataToLocalStorage(eventtype2);
+  
+        
+
+            
+           //////////check the browser is support the localstorage//////////
+                if(typeof(localStorage) !=="undefined")
+            {
+                
+            
+
+                localStorage.setItem("A", "a.png");
+                localStorage.setItem("B", "b.png");
+                localStorage.setItem("C", "c.png");
+                localStorage.setItem("D", "d.png");
+                localStorage.setItem("E", "e.png");
+                localStorage.setItem("F", "f.png");
+                localStorage.setItem("G", "g.png");
+                localStorage.setItem("H", "h.png");
+                localStorage.setItem("I", "i.png");
+                localStorage.setItem("J", "j.png");
+                localStorage.setItem("K", "k.png");
+                localStorage.setItem("L", "l.png");
+                localStorage.setItem("M", "m.png");
+                localStorage.setItem("N", "n.png");
+                localStorage.setItem("O", "o.png");
+                localStorage.setItem("P", "p.png");
+                localStorage.setItem("Q", "q.png");
+                localStorage.setItem("R", "r.png");
+                localStorage.setItem("S", "s.png");
+                localStorage.setItem("T", "t.png");
+                localStorage.setItem("U", "u.png");
+                localStorage.setItem("V", "v.png");
+                localStorage.setItem("W", "w.png");
+                localStorage.setItem("X", "x.png");
+                localStorage.setItem("Y", "y.png");
+                localStorage.setItem("Z", "z.png");
+
+                img.setAttribute("src",localStorage.getItem(e.target.textContent));
+          
+            }
+
+         else
+            {
+                div1.innerHTML ="<h2>this browser not support for local storage</h2>";
+            }
+         }
+            );
+
+            /////////////////////////// Load Event////////////////////
+            window.addEventListener('load',function(e)
+            {
+                loadcounter++;
+            var  eventtype3="{Load ".concat(loadcounter," , Event ",loadcounter,d,"}");
+            SaveDataToLocalStorage2(eventtype3);
+              
+            
+
+                
+            });
+            ///////////////////////Unload Event///////////
+            window.addEventListener('unload',function(e)
+            {
+                loadcounter++;
+            var  eventtype4="{UnLoad ".concat(loadcounter," , Event ",loadcounter,d,"}");
+           SaveDataToLocalStorage2(eventtype4);
+              
+           
+
+               
+            });
+     
+           /* setInterval(() => {
+				localStorage.clear();
+			}, 10000);*/
+           
+        
+    
+            
+        </script>
+    </body>
+</html>
